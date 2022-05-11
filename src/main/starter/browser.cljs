@@ -1,6 +1,7 @@
 (ns starter.browser
   (:require
-    ["firebase/app" :refer (getAuth)]))
+    ["firebase/app" :refer (initializeApp)]
+    ["firebase/auth" :refer (getAuth)]))
 
 
 ;; start is called by init and after code reloading finishes
@@ -13,7 +14,9 @@
   ;; so it is available even in :advanced release builds
   (js/console.log "init")
   (start)
-  (js/console.log "getAuth:" getAuth))
+  (js/console.log "getAuth:" getAuth)
+  (js/console.log (-> (initializeApp #js {})
+                      getAuth)))
 
 
 ;; this is called before any code is reloaded
